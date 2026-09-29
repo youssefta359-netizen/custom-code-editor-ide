@@ -1,0 +1,4 @@
+const { contextBridge, ipcRenderer } = require('electron');
+contextBridge.exposeInMainWorld('ide', {
+  openFolder: () => ipcRenderer.invoke('folder:open'), readFile: p => ipcRenderer.invoke('file:read',p), writeFile: (p,c) => ipcRenderer.invoke('file:write',p,c), list: p => ipcRenderer.invoke('fs:list',p), mkdir: (p,n) => ipcRenderer.invoke('fs:mkdir',p,n), rename: (p,n) => ipcRenderer.invoke('fs:rename',p,n), remove: p => ipcRenderer.invoke('fs:delete',p), detect: p => ipcRenderer.invoke('compiler:detect',p), platform: () => ipcRenderer.invoke('system:platform'), start: (id,cwd,cmd) => ipcRenderer.invoke('process:start',id,cmd,cwd), input: (id,d) => ipcRenderer.invoke('process:input',id,d), stop: id => ipcRenderer.invoke('process:stop',id), onOutput: fn => ipcRenderer.on('process:output',(_, ...a)=>fn(...a)), onExit: fn => ipcRenderer.on('process:exit',(_, ...a)=>fn(...a))
+});

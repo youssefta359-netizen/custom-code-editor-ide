@@ -1,0 +1,11 @@
+{
+  "name": "custom-code-editor-ide",
+  "version": "0.1.0",
+  "description": "Offline-first desktop IDE without AI assistance or autocomplete",
+  "main": "src/main.js",
+  "author": "youssefta359-netizen",
+  "license": "MIT",
+  "scripts": { "start": "electron .", "dev": "electron .", "dist": "electron-builder" },
+  "devDependencies": { "electron": "^31.0.0", "electron-builder": "^24.13.3" },
+  "build": { "appId": "local.myide.app", "productName": "MY IDE", "files": ["src/**/*", "package.json"], "linux": { "target": "AppImage" }, "win": { "target": "nsis" }, "mac": { "target": "dmg" } }
+}
